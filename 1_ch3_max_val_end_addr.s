@@ -8,13 +8,13 @@
 #
 # The following memory locations are used:
 #
-# data_items - contains the item data. A 0 is used the terminate the data.
+# data_items - contains the item data. Modified to exit based on address offset, not a 0 in the list.
 #
 
 .section .data
 
  data_items:
- .long 3, 67, 34, 222, 45, 75, 54, 34, 44, 33, 22, 11, 66, 0
+ .long 3, 67, 34, 222, 45, 75, 54, 34, 44, 33, 22, 11, 66
 
 .section .text
 
@@ -25,7 +25,7 @@ _start:
  movl %eax, %ebx
 
 start_loop:
- cmpl $0, %eax
+ cmpl $13, %edi
  je loop_exit
  incl %edi
  movl data_items(,%edi,4), %eax

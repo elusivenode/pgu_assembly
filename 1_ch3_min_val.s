@@ -14,7 +14,7 @@
 .section .data
 
  data_items:
- .long 3, 67, 34, 222, 45, 75, 54, 34, 44, 33, 22, 11, 66, 0
+ .long 3, 67, 34, 222, 45, 75, 54, 34, 44, 33, 22, 11, 66
 
 .section .text
 
@@ -25,12 +25,12 @@ _start:
  movl %eax, %ebx
 
 start_loop:
- cmpl $0, %eax
+ cmpl $66, %eax
  je loop_exit
  incl %edi
  movl data_items(,%edi,4), %eax
  cmpl %ebx, %eax
- jle start_loop
+ jge start_loop
  movl %eax, %ebx
  jmp start_loop
 
